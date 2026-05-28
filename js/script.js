@@ -107,7 +107,7 @@ function setupMusicToggle() {
 // ==================== COUNTDOWN TIMER ====================
 function setupCountdown() {
     // Set wedding date - 15 Juli 2026 08:00 WIB (UTC+7)
-    const weddingDate = new Date('2026-07-15T08:00:00+07:00').getTime();
+    const weddingDate = new Date('2027-07-15T08:00:00+07:00').getTime();
 
     function updateCountdown() {
         const now = new Date().getTime();
