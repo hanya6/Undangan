@@ -180,7 +180,7 @@ function setupGalleryLightbox() {
 
 // ==================== GOOGLE SHEETS CONFIG ====================
 // GANTI URL ini dengan URL Google Apps Script Web App milik Anda
-const GOOGLE_SCRIPT_URL = 'PASTE_YOUR_GOOGLE_APPS_SCRIPT_URL_HERE';
+const GOOGLE_SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbxtBqDpI4RSpIK87SKL6ZpheCdcA03STc588ITMGoZokXpW_NGhqSqD5UEMolgj1i4EmA/exec';
 
 // ==================== RSVP FORM ====================
 function setupRSVPForm() {
