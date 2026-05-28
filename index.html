@@ -1,0 +1,400 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Undangan Pernikahan - Antares & Mellysa</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400;1,700&family=Poppins:wght@300;400;500;600&family=Great+Vibes&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="https://unpkg.com/aos@2.3.4/dist/aos.css">
+</head>
+<body>
+    <!-- Audio Background -->
+    <audio id="bgMusic" loop>
+        <source src="audio/music.mp3" type="audio/mpeg">
+    </audio>
+
+    <!-- Music Toggle Button -->
+    <button id="musicToggle" class="music-btn" aria-label="Toggle Music">
+        <i class="fas fa-music"></i>
+    </button>
+
+    <!-- ==================== COVER / OPENING ==================== -->
+    <section id="cover" class="cover-section">
+        <div class="cover-overlay"></div>
+        <div class="cover-content">
+            <div class="cover-ornament top"></div>
+            <p class="cover-subtitle">The Wedding Of</p>
+            <h1 class="cover-names">Antares <span>&</span> Mellysa</h1>
+            <div class="cover-date">
+                <p>Minggu, 15 Juni 2025</p>
+            </div>
+            <div class="cover-guest">
+                <p>Kepada Yth.</p>
+                <p class="guest-name" id="guestName">Tamu Undangan</p>
+            </div>
+            <button id="openInvitation" class="btn-open">
+                <i class="fas fa-envelope-open"></i> Buka Undangan
+            </button>
+            <div class="cover-ornament bottom"></div>
+        </div>
+    </section>
+
+    <!-- ==================== MAIN CONTENT ==================== -->
+    <main id="mainContent" class="hidden">
+
+        <!-- ===== OPENING QUOTE ===== -->
+        <section class="section quote-section">
+            <div class="container" data-aos="fade-up">
+                <div class="ornament-divider">
+                    <img src="https://i.imgur.com/8QbZGqN.png" alt="ornament" class="ornament-img" onerror="this.style.display='none'">
+                </div>
+                <p class="quran-verse">
+                    "Dan di antara tanda-tanda (kebesaran)-Nya ialah Dia menciptakan pasangan-pasangan untukmu dari jenismu sendiri, agar kamu cenderung merasa tenteram kepadanya, dan Dia menjadikan di antaramu rasa kasih dan sayang."
+                </p>
+                <p class="quran-source">— QS. Ar-Rum: 21 —</p>
+            </div>
+        </section>
+
+        <!-- ===== MEMPELAI / COUPLE ===== -->
+        <section class="section couple-section" id="couple">
+            <div class="container">
+                <h2 class="section-title" data-aos="fade-up">Mempelai</h2>
+                <div class="couple-wrapper">
+                    <!-- Mempelai Pria -->
+                    <div class="couple-card" data-aos="fade-right">
+                        <div class="couple-photo">
+                            <img src="https://i.imgur.com/JkHxEOw.jpg" alt="Mempelai Pria" onerror="this.src='https://via.placeholder.com/300x300?text=Groom'">
+                        </div>
+                        <h3 class="couple-name">Antares Pratama</h3>
+                        <p class="couple-info">Putra pertama dari<br>Bapak Surya Pratama<br>&<br>Ibu Ratna Dewi</p>
+                        <div class="couple-social">
+                            <a href="#"><i class="fab fa-instagram"></i></a>
+                        </div>
+                    </div>
+
+                    <!-- Couple Connector -->
+                    <div class="couple-connector" data-aos="zoom-in">
+                        <span class="ampersand">&</span>
+                    </div>
+
+                    <!-- Mempelai Wanita -->
+                    <div class="couple-card" data-aos="fade-left">
+                        <div class="couple-photo">
+                            <img src="https://i.imgur.com/8zL5cRH.jpg" alt="Mempelai Wanita" onerror="this.src='https://via.placeholder.com/300x300?text=Bride'">
+                        </div>
+                        <h3 class="couple-name">Mellysa Anggraini</h3>
+                        <p class="couple-info">Putri kedua dari<br>Bapak Hendra Anggraini<br>&<br>Ibu Siti Nurhaliza</p>
+                        <div class="couple-social">
+                            <a href="#"><i class="fab fa-instagram"></i></a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ===== COUNTDOWN ===== -->
+        <section class="section countdown-section" id="countdown">
+            <div class="container" data-aos="fade-up">
+                <h2 class="section-title light">Menghitung Hari</h2>
+                <p class="countdown-subtitle">Menuju hari bahagia kami</p>
+                <div class="countdown-wrapper">
+                    <div class="countdown-item">
+                        <span class="countdown-number" id="days">00</span>
+                        <span class="countdown-label">Hari</span>
+                    </div>
+                    <div class="countdown-item">
+                        <span class="countdown-number" id="hours">00</span>
+                        <span class="countdown-label">Jam</span>
+                    </div>
+                    <div class="countdown-item">
+                        <span class="countdown-number" id="minutes">00</span>
+                        <span class="countdown-label">Menit</span>
+                    </div>
+                    <div class="countdown-item">
+                        <span class="countdown-number" id="seconds">00</span>
+                        <span class="countdown-label">Detik</span>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ===== EVENT / ACARA ===== -->
+        <section class="section event-section" id="event">
+            <div class="container">
+                <h2 class="section-title" data-aos="fade-up">Waktu & Tempat</h2>
+                <div class="event-wrapper">
+                    <!-- Akad Nikah -->
+                    <div class="event-card" data-aos="fade-up" data-aos-delay="100">
+                        <div class="event-icon">
+                            <i class="fas fa-ring"></i>
+                        </div>
+                        <h3>Akad Nikah</h3>
+                        <div class="event-details">
+                            <p><i class="far fa-calendar"></i> Minggu, 15 Juni 2025</p>
+                            <p><i class="far fa-clock"></i> 08:00 - 10:00 WIB</p>
+                            <p><i class="fas fa-map-marker-alt"></i> Masjid Agung Al-Azhar</p>
+                            <p class="event-address">Jl. Sisingamangaraja, Kebayoran Baru, Jakarta Selatan</p>
+                        </div>
+                        <a href="https://maps.google.com" target="_blank" class="btn-maps">
+                            <i class="fas fa-map-marked-alt"></i> Buka Maps
+                        </a>
+                    </div>
+
+                    <!-- Resepsi -->
+                    <div class="event-card" data-aos="fade-up" data-aos-delay="200">
+                        <div class="event-icon">
+                            <i class="fas fa-champagne-glasses"></i>
+                        </div>
+                        <h3>Resepsi</h3>
+                        <div class="event-details">
+                            <p><i class="far fa-calendar"></i> Minggu, 15 Juni 2025</p>
+                            <p><i class="far fa-clock"></i> 11:00 - 14:00 WIB</p>
+                            <p><i class="fas fa-map-marker-alt"></i> Balai Kartini</p>
+                            <p class="event-address">Jl. Jend. Gatot Subroto, Jakarta Selatan</p>
+                        </div>
+                        <a href="https://maps.google.com" target="_blank" class="btn-maps">
+                            <i class="fas fa-map-marked-alt"></i> Buka Maps
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ===== LOVE STORY ===== -->
+        <section class="section story-section" id="story">
+            <div class="container">
+                <h2 class="section-title" data-aos="fade-up">Love Story</h2>
+                <div class="timeline">
+                    <div class="timeline-item" data-aos="fade-right">
+                        <div class="timeline-dot"></div>
+                        <div class="timeline-content">
+                            <h4>Pertama Bertemu</h4>
+                            <span class="timeline-date">Januari 2020</span>
+                            <p>Kami pertama kali bertemu di sebuah acara kampus. Saat itu pandangan kami bertemu dan semuanya terasa berbeda.</p>
+                        </div>
+                    </div>
+                    <div class="timeline-item" data-aos="fade-left">
+                        <div class="timeline-dot"></div>
+                        <div class="timeline-content">
+                            <h4>Mulai Dekat</h4>
+                            <span class="timeline-date">Maret 2020</span>
+                            <p>Setelah sering berkomunikasi, kami mulai menyadari ada perasaan yang lebih dari sekadar teman.</p>
+                        </div>
+                    </div>
+                    <div class="timeline-item" data-aos="fade-right">
+                        <div class="timeline-dot"></div>
+                        <div class="timeline-content">
+                            <h4>Resmi Berpacaran</h4>
+                            <span class="timeline-date">Juni 2020</span>
+                            <p>Di bawah langit senja yang indah, kami resmi memulai perjalanan cinta bersama.</p>
+                        </div>
+                    </div>
+                    <div class="timeline-item" data-aos="fade-left">
+                        <div class="timeline-dot"></div>
+                        <div class="timeline-content">
+                            <h4>Lamaran</h4>
+                            <span class="timeline-date">Desember 2024</span>
+                            <p>Dengan penuh keyakinan dan doa, kami memutuskan untuk melangkah ke jenjang yang lebih serius.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ===== GALLERY ===== -->
+        <section class="section gallery-section" id="gallery">
+            <div class="container">
+                <h2 class="section-title" data-aos="fade-up">Galeri Foto</h2>
+                <div class="gallery-grid" data-aos="fade-up">
+                    <div class="gallery-item">
+                        <img src="https://images.unsplash.com/photo-1519741497674-611481863552?w=400" alt="Gallery 1" loading="lazy">
+                    </div>
+                    <div class="gallery-item">
+                        <img src="https://images.unsplash.com/photo-1511285560929-80b456fea0bc?w=400" alt="Gallery 2" loading="lazy">
+                    </div>
+                    <div class="gallery-item">
+                        <img src="https://images.unsplash.com/photo-1465495976277-4387d4b0b4c6?w=400" alt="Gallery 3" loading="lazy">
+                    </div>
+                    <div class="gallery-item">
+                        <img src="https://images.unsplash.com/photo-1606216794074-735e91aa2c92?w=400" alt="Gallery 4" loading="lazy">
+                    </div>
+                    <div class="gallery-item">
+                        <img src="https://images.unsplash.com/photo-1591604466107-ec97de577aff?w=400" alt="Gallery 5" loading="lazy">
+                    </div>
+                    <div class="gallery-item">
+                        <img src="https://images.unsplash.com/photo-1583939003579-730e3918a45a?w=400" alt="Gallery 6" loading="lazy">
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ===== RSVP & UCAPAN ===== -->
+        <section class="section rsvp-section" id="rsvp">
+            <div class="container">
+                <h2 class="section-title" data-aos="fade-up">RSVP & Ucapan</h2>
+                <p class="section-subtitle" data-aos="fade-up">Berikan doa & ucapan terbaik untuk kami</p>
+
+                <div class="rsvp-form-wrapper" data-aos="fade-up">
+                    <form id="rsvpForm" class="rsvp-form">
+                        <div class="form-group">
+                            <label for="namaTamu">Nama</label>
+                            <input type="text" id="namaTamu" name="nama" placeholder="Masukkan nama Anda" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="kehadiran">Konfirmasi Kehadiran</label>
+                            <select id="kehadiran" name="kehadiran" required>
+                                <option value="">-- Pilih --</option>
+                                <option value="hadir">Akan Hadir</option>
+                                <option value="tidak">Tidak Bisa Hadir</option>
+                                <option value="ragu">Masih Ragu</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label for="jumlah">Jumlah Tamu</label>
+                            <input type="number" id="jumlah" name="jumlah" min="1" max="5" value="1">
+                        </div>
+                        <div class="form-group">
+                            <label for="ucapan">Ucapan & Doa</label>
+                            <textarea id="ucapan" name="ucapan" rows="4" placeholder="Tulis ucapan & doa untuk kedua mempelai..." required></textarea>
+                        </div>
+                        <button type="submit" class="btn-submit">
+                            <i class="fas fa-paper-plane"></i> Kirim Ucapan
+                        </button>
+                    </form>
+                </div>
+
+                <!-- Daftar Ucapan -->
+                <div class="wishes-list" data-aos="fade-up">
+                    <h3 class="wishes-title"><i class="fas fa-comments"></i> Ucapan & Doa</h3>
+                    <div id="wishesList" class="wishes-container">
+                        <!-- Wishes will be loaded here -->
+                        <div class="wish-item">
+                            <div class="wish-header">
+                                <strong>Budi Santoso</strong>
+                                <span class="wish-badge hadir">Hadir</span>
+                            </div>
+                            <p>Selamat menempuh hidup baru! Semoga menjadi keluarga yang sakinah, mawaddah, wa rahmah. Aamiin 🤲</p>
+                        </div>
+                        <div class="wish-item">
+                            <div class="wish-header">
+                                <strong>Sari Indah</strong>
+                                <span class="wish-badge hadir">Hadir</span>
+                            </div>
+                            <p>Barakallahu lakuma wa baraka 'alaikuma wa jama'a bainakuma fi khair. Semoga langgeng sampai Jannah! 💕</p>
+                        </div>
+                        <div class="wish-item">
+                            <div class="wish-header">
+                                <strong>Ahmad Faisal</strong>
+                                <span class="wish-badge tidak">Tidak Hadir</span>
+                            </div>
+                            <p>Maaf tidak bisa hadir, tapi doa selalu menyertai kalian berdua. Semoga bahagia selalu! 🎉</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ===== GIFT / HADIAH ===== -->
+        <section class="section gift-section" id="gift">
+            <div class="container" data-aos="fade-up">
+                <h2 class="section-title">Hadiah</h2>
+                <p class="section-subtitle">Doa restu Anda merupakan karunia yang sangat berarti bagi kami. Namun jika Anda ingin memberikan tanda kasih, kami menyediakan informasi berikut:</p>
+                <div class="gift-wrapper">
+                    <div class="gift-card" data-aos="fade-up" data-aos-delay="100">
+                        <div class="gift-icon">
+                            <i class="fas fa-university"></i>
+                        </div>
+                        <h4>Bank BCA</h4>
+                        <p class="gift-account">1234 5678 9012</p>
+                        <p class="gift-name">a.n. Antares Pratama</p>
+                        <button class="btn-copy" data-copy="123456789012">
+                            <i class="far fa-copy"></i> Salin
+                        </button>
+                    </div>
+                    <div class="gift-card" data-aos="fade-up" data-aos-delay="200">
+                        <div class="gift-icon">
+                            <i class="fas fa-university"></i>
+                        </div>
+                        <h4>Bank Mandiri</h4>
+                        <p class="gift-account">9876 5432 1098</p>
+                        <p class="gift-name">a.n. Mellysa Anggraini</p>
+                        <button class="btn-copy" data-copy="987654321098">
+                            <i class="far fa-copy"></i> Salin
+                        </button>
+                    </div>
+                    <div class="gift-card" data-aos="fade-up" data-aos-delay="300">
+                        <div class="gift-icon">
+                            <i class="fas fa-gift"></i>
+                        </div>
+                        <h4>Kirim Hadiah</h4>
+                        <p class="gift-address">Jl. Mawar No. 10, RT 05/RW 03, Kebayoran Baru, Jakarta Selatan 12110</p>
+                        <button class="btn-copy" data-copy="Jl. Mawar No. 10, RT 05/RW 03, Kebayoran Baru, Jakarta Selatan 12110">
+                            <i class="far fa-copy"></i> Salin
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ===== PROTOKOL KESEHATAN (Optional) ===== -->
+        <section class="section protocol-section" id="protocol">
+            <div class="container" data-aos="fade-up">
+                <h2 class="section-title">Protokol Acara</h2>
+                <div class="protocol-grid">
+                    <div class="protocol-item">
+                        <i class="fas fa-clock"></i>
+                        <p>Hadir Tepat Waktu</p>
+                    </div>
+                    <div class="protocol-item">
+                        <i class="fas fa-user-check"></i>
+                        <p>Konfirmasi Kehadiran</p>
+                    </div>
+                    <div class="protocol-item">
+                        <i class="fas fa-tshirt"></i>
+                        <p>Dresscode: Pastel</p>
+                    </div>
+                    <div class="protocol-item">
+                        <i class="fas fa-camera"></i>
+                        <p>Abadikan Momen</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ===== CLOSING ===== -->
+        <section class="section closing-section">
+            <div class="container" data-aos="fade-up">
+                <div class="closing-content">
+                    <p class="closing-text">Merupakan suatu kehormatan dan kebahagiaan bagi kami apabila Bapak/Ibu/Saudara/i berkenan hadir untuk memberikan doa restu kepada kami.</p>
+                    <h3 class="closing-names">Antares & Mellysa</h3>
+                    <p class="closing-thanks">Atas kehadiran dan doa restu, kami mengucapkan terima kasih.</p>
+                    <p class="closing-wassalam">Wassalamu'alaikum Wr. Wb.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- ===== FOOTER ===== -->
+        <footer class="footer">
+            <div class="container">
+                <p>Made with <i class="fas fa-heart"></i> for Antares & Mellysa</p>
+                <p class="footer-credit">© 2025 Wedding Invitation</p>
+            </div>
+        </footer>
+
+    </main>
+
+    <!-- Lightbox Modal -->
+    <div id="lightbox" class="lightbox">
+        <span class="lightbox-close">&times;</span>
+        <img id="lightboxImg" class="lightbox-img" src="" alt="Gallery Image">
+    </div>
+
+    <!-- Scripts -->
+    <script src="https://unpkg.com/aos@2.3.4/dist/aos.js"></script>
+    <script src="js/script.js"></script>
+</body>
+</html>
