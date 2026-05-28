@@ -178,6 +178,10 @@ function setupGalleryLightbox() {
 }
 
 
+// ==================== GOOGLE SHEETS CONFIG ====================
+// GANTI URL ini dengan URL Google Apps Script Web App milik Anda
+const GOOGLE_SCRIPT_URL = 'PASTE_YOUR_GOOGLE_APPS_SCRIPT_URL_HERE';
+
 // ==================== RSVP FORM ====================
 function setupRSVPForm() {
     const form = document.getElementById('rsvpForm');
@@ -189,6 +193,7 @@ function setupRSVPForm() {
 
             const nama = document.getElementById('namaTamu').value.trim();
             const kehadiran = document.getElementById('kehadiran').value;
+            const jumlah = document.getElementById('jumlah').value;
             const ucapan = document.getElementById('ucapan').value.trim();
 
             if (!nama || !kehadiran || !ucapan) {
@@ -196,47 +201,111 @@ function setupRSVPForm() {
                 return;
             }
 
-            // Create wish element
-            const wishItem = document.createElement('div');
-            wishItem.className = 'wish-item';
-            wishItem.style.opacity = '0';
-            wishItem.style.transform = 'translateX(-10px)';
+            // Disable submit button
+            const submitBtn = form.querySelector('.btn-submit');
+            submitBtn.disabled = true;
+            submitBtn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Mengirim...';
 
-            const badgeClass = kehadiran === 'hadir' ? 'hadir' : kehadiran === 'tidak' ? 'tidak' : 'ragu';
-            const badgeText = kehadiran === 'hadir' ? 'Hadir' : kehadiran === 'tidak' ? 'Tidak Hadir' : 'Masih Ragu';
+            // Send to Google Sheets
+            const formData = new FormData();
+            formData.append('nama', nama);
+            formData.append('kehadiran', kehadiran);
+            formData.append('jumlah', jumlah);
+            formData.append('ucapan', ucapan);
+            formData.append('timestamp', new Date().toLocaleString('id-ID'));
 
-            wishItem.innerHTML = `
-                <div class="wish-header">
-                    <strong>${escapeHtml(nama)}</strong>
-                    <span class="wish-badge ${badgeClass}">${badgeText}</span>
-                </div>
-                <p>${escapeHtml(ucapan)}</p>
-            `;
+            fetch(GOOGLE_SCRIPT_URL, {
+                method: 'POST',
+                body: formData
+            })
+            .then(function(response) {
+                return response.json();
+            })
+            .then(function(data) {
+                // Create wish element
+                addWishToList(nama, kehadiran, ucapan, wishesList);
 
-            // Insert at the top of the list
-            wishesList.insertBefore(wishItem, wishesList.firstChild);
+                // Save to localStorage as backup
+                saveWish({ nama, kehadiran, ucapan, timestamp: Date.now() });
 
-            // Animate in
-            setTimeout(function () {
-                wishItem.style.transition = 'all 0.3s ease';
-                wishItem.style.opacity = '1';
-                wishItem.style.transform = 'translateX(0)';
-            }, 50);
+                // Reset form
+                form.reset();
+                showNotification('Terima kasih atas ucapan dan doa Anda!', 'success');
 
-            // Save to localStorage
-            saveWish({ nama, kehadiran, ucapan, timestamp: Date.now() });
-
-            // Reset form
-            form.reset();
-            showNotification('Terima kasih atas ucapan dan doa Anda!', 'success');
-
-            // Scroll to the wishes list
-            wishesList.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                // Scroll to the wishes list
+                wishesList.scrollIntoView({ behavior: 'smooth', block: 'start' });
+            })
+            .catch(function(error) {
+                console.error('Error:', error);
+                // Still show the wish locally even if Google Sheets fails
+                addWishToList(nama, kehadiran, ucapan, wishesList);
+                saveWish({ nama, kehadiran, ucapan, timestamp: Date.now() });
+                form.reset();
+                showNotification('Ucapan tersimpan! (koneksi ke server sedang bermasalah)', 'success');
+            })
+            .finally(function() {
+                // Re-enable submit button
+                submitBtn.disabled = false;
+                submitBtn.innerHTML = '<i class="fas fa-paper-plane"></i> Kirim Ucapan';
+            });
         });
     }
 
-    // Load saved wishes from localStorage
+    // Load wishes from Google Sheets
+    loadWishesFromSheet();
+
+    // Load saved wishes from localStorage as fallback
     loadSavedWishes();
+}
+
+function addWishToList(nama, kehadiran, ucapan, wishesList) {
+    const wishItem = document.createElement('div');
+    wishItem.className = 'wish-item';
+    wishItem.style.opacity = '0';
+    wishItem.style.transform = 'translateX(-10px)';
+
+    const badgeClass = kehadiran === 'hadir' ? 'hadir' : kehadiran === 'tidak' ? 'tidak' : 'ragu';
+    const badgeText = kehadiran === 'hadir' ? 'Hadir' : kehadiran === 'tidak' ? 'Tidak Hadir' : 'Masih Ragu';
+
+    wishItem.innerHTML = `
+        <div class="wish-header">
+            <strong>${escapeHtml(nama)}</strong>
+            <span class="wish-badge ${badgeClass}">${badgeText}</span>
+        </div>
+        <p>${escapeHtml(ucapan)}</p>
+    `;
+
+    // Insert at the top of the list
+    wishesList.insertBefore(wishItem, wishesList.firstChild);
+
+    // Animate in
+    setTimeout(function () {
+        wishItem.style.transition = 'all 0.3s ease';
+        wishItem.style.opacity = '1';
+        wishItem.style.transform = 'translateX(0)';
+    }, 50);
+}
+
+// Load wishes from Google Sheets (so all visitors can see all wishes)
+function loadWishesFromSheet() {
+    if (GOOGLE_SCRIPT_URL === 'PASTE_YOUR_GOOGLE_APPS_SCRIPT_URL_HERE') return;
+
+    fetch(GOOGLE_SCRIPT_URL)
+        .then(function(response) { return response.json(); })
+        .then(function(data) {
+            if (data && data.wishes && data.wishes.length > 0) {
+                const wishesList = document.getElementById('wishesList');
+                // Clear default/static wishes
+                wishesList.innerHTML = '';
+
+                data.wishes.reverse().forEach(function(wish) {
+                    addWishToList(wish.nama, wish.kehadiran, wish.ucapan, wishesList);
+                });
+            }
+        })
+        .catch(function(error) {
+            console.log('Gagal memuat ucapan dari server:', error);
+        });
 }
 
 function saveWish(wish) {
