@@ -12,8 +12,11 @@
     <link rel="stylesheet" href="https://unpkg.com/aos@2.3.4/dist/aos.css">
 </head>
 <body>
-    <!-- Audio Background dari Google Drive -->
-    <audio id="bgMusic" loop preload="auto" src="https://docs.google.com/uc?export=download&id=1zwc5aW8KrHAgOkZdjJEvXvZ2kPEGNIN7"></audio>
+    <!-- Audio Background -->
+    <audio id="bgMusic" loop preload="auto">
+        <source src="https://drive.google.com/uc?export=download&id=1zwc5aW8KrHAgOkZdjJEvXvZ2kPEGNIN7" type="audio/mpeg">
+        <source src="audio/music.mp3" type="audio/mpeg">
+    </audio>
 
     <!-- Music Toggle Button -->
     <button id="musicToggle" class="music-btn" aria-label="Toggle Music">
